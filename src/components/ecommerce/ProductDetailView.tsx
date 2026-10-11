@@ -33,7 +33,6 @@ export const ProductDetailView: React.FC<ProductDetailViewProps> = ({
     toggleWishlist,
     isInWishlist,
     formatPrice,
-    setIsCartOpen,
     showToast,
   } = useStore();
 
@@ -110,7 +109,6 @@ export const ProductDetailView: React.FC<ProductDetailViewProps> = ({
 
   const handleAddToCart = () => {
     addToCart(product, quantity, selectedColor, product.hasBlousePiece ? blouseOption : undefined);
-    setIsCartOpen(true);
   };
 
   const handleBuyNow = () => {

@@ -27,7 +27,7 @@ const LookItemThumbnail: React.FC<{ src: string; alt: string }> = ({ src, alt })
 };
 
 export const ShopTheLook: React.FC = () => {
-  const { addToCart, setIsCartOpen, formatPrice, showToast } = useStore();
+  const { addToCart, formatPrice, showToast } = useStore();
   const [addedItems, setAddedItems] = useState<{ [key: string]: boolean }>({});
 
   const handleAddSingleItem = (item: typeof SHOP_THE_LOOK_ITEMS[0]) => {
@@ -41,7 +41,6 @@ export const ShopTheLook: React.FC = () => {
     setTimeout(() => {
       setAddedItems((prev) => ({ ...prev, [item.id]: false }));
     }, 2000);
-    setIsCartOpen(true);
   };
 
   return (

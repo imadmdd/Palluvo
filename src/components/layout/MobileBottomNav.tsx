@@ -5,16 +5,15 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Home, Grid, ShoppingBag, User } from "lucide-react";
 import { useStore } from "@/context/StoreContext";
-import { scrollToTop } from "@/utils/scroll";
 
 export const MobileBottomNav: React.FC = () => {
   const pathname = usePathname();
-  const { cartCount, setIsCartOpen, isLoggedIn } = useStore();
+  const { cartCount, isLoggedIn } = useStore();
 
   const items = [
     { label: "Home", href: "/", icon: Home },
     { label: "Shop", href: "/shop", icon: Grid },
-    { label: "Cart", href: "/cart", icon: ShoppingBag, count: cartCount, isCartDrawer: true },
+    { label: "Cart", href: "/cart", icon: ShoppingBag, count: cartCount },
     { 
       label: isLoggedIn ? "Account" : "Sign In", 
       href: "/account", 
@@ -41,41 +40,6 @@ export const MobileBottomNav: React.FC = () => {
             ? `${item.label} with ${item.count} items`
             : item.label);
 
-        if (item.isCartDrawer) {
-          return (
-            <button
-              key={item.label}
-              onClick={() => {
-                if (pathname === "/cart") {
-                  scrollToTop();
-                } else {
-                  setIsCartOpen(true);
-                }
-              }}
-              aria-current={isActive ? "page" : undefined}
-              aria-label={ariaLabel}
-              className={`min-w-[44px] min-h-[44px] flex flex-col items-center justify-center p-1 relative transition-colors ${
-                isActive ? "text-[#541920] font-semibold" : "text-[#5E5A54] hover:text-[#541920]"
-              }`}
-            >
-              <div className="relative">
-                <Icon size={20} />
-                {item.count !== undefined && item.count > 0 && (
-                  <span
-                    aria-hidden="true"
-                    className="absolute -top-1 -right-2 bg-[#541920] text-[#FAF7F2] text-[8px] font-bold w-3.5 h-3.5 rounded-full flex items-center justify-center"
-                  >
-                    {item.count}
-                  </span>
-                )}
-              </div>
-              <span className="text-[10px] tracking-wider mt-0.5 font-medium">
-                {item.label}
-              </span>
-            </button>
-          );
-        }
-
         return (
           <Link
             key={item.label}
@@ -91,7 +55,7 @@ export const MobileBottomNav: React.FC = () => {
               {item.count !== undefined && item.count > 0 && (
                 <span
                   aria-hidden="true"
-                  className="absolute -top-1 -right-2 bg-[#8E371F] text-[#FAF7F2] text-[8px] font-bold w-3.5 h-3.5 rounded-full flex items-center justify-center"
+                  className="absolute -top-1 -right-2 bg-[#541920] text-[#FAF7F2] text-[8px] font-bold w-3.5 h-3.5 rounded-full flex items-center justify-center"
                 >
                   {item.count}
                 </span>

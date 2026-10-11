@@ -194,7 +194,6 @@ export const StoreProvider: React.FC<{ children: React.ReactNode }> = ({ childre
         }
         return [...prev, { product, quantity, selectedColor: color, blouseOption: finalBlouseOption }];
       });
-      setIsCartOpen(true);
       showToast(`Added ${product.name} to Bag!`);
     },
     [showToast]

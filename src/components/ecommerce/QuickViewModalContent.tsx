@@ -21,7 +21,6 @@ export const QuickViewModalContent: React.FC<QuickViewModalContentProps> = ({
     toggleWishlist,
     isInWishlist,
     formatPrice,
-    setIsCartOpen,
   } = useStore();
 
   const modalRef = useFocusTrap<HTMLDivElement>({
@@ -41,7 +40,6 @@ export const QuickViewModalContent: React.FC<QuickViewModalContentProps> = ({
   const handleAddToCart = () => {
     addToCart(product, quantity, selectedColor, product.hasBlousePiece ? blouseOption : undefined);
     onClose();
-    setIsCartOpen(true);
   };
 
   return (
